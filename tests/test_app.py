@@ -38,7 +38,7 @@ class NBADailyScoreboardTestCases(TestCase):
         mock_session.return_value.get.return_value = mocked_daily_scoreboard_request(200)
         sample_date = datetime.date(2022, 5, 22)
         resp = fetch_nba_daily_scoreboard(sample_date)
-        self.assertEqual(resp.status_code, HTTPStatus.OK.value)
+        self.assertEqual(resp.status_code, HTTPStatus.OK)
 
     @patch('applications.app.requests.session')
     def test_fetch_nba_daily_scoreboard_failed(self, mock_session):
