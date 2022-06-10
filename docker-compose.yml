@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+
+  swish-crawler-build:
+    build:
+      context: .
+      target: prod
+    image: swish-crawler:${IMAGE_TAG:-latest}
+
+  swish-crawler-run:
+    image: swish-crawler:${IMAGE_TAG:-latest}
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./:/services/swish/swish-crawler/
