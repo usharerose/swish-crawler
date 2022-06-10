@@ -11,6 +11,6 @@ services:
   swish-crawler-run:
     image: swish-crawler:${IMAGE_TAG:-latest}
     ports:
-      - "8082:8082"
+      - "8888:8888"
     volumes:
       - ./:/services/swish/swish-crawler/
