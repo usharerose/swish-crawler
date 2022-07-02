@@ -23,9 +23,9 @@ WORKDIR /services/swish/swish-crawler/
 COPY requirements.txt requirements-test.txt ./
 
 # install dependencies
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r /services/swish/swish-crawler/requirements.txt && \
-    pip install --no-cache-dir -r /services/swish/swish-crawler/requirements-test.txt && \
+RUN python -m pip install --upgrade pip && \
+    python -m pip install --no-cache-dir -r /services/swish/swish-crawler/requirements.txt && \
+    python -m pip install --no-cache-dir -r /services/swish/swish-crawler/requirements-test.txt && \
     find /usr/local/ -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 
 # Remove requirements files
