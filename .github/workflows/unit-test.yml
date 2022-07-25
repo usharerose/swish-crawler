@@ -26,4 +26,4 @@ jobs:
           if [ -f requirements-test.txt ]; then python -m pip install -r requirements-test.txt; fi
       - name: Functional Test with pytest
         run: |
-          pytest -sv --cov-report term-missing --cov=applications/ --disable-warnings tests/
+          make testd
