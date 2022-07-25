@@ -2,7 +2,7 @@ FROM python:3.8-alpine AS prod
 MAINTAINER usharerose
 
 RUN apk update && \
-    apk add --no-cache tzdata bash vim curl && \
+    apk add --no-cache tzdata bash make vim curl && \
     apk upgrade && \
     rm -rf /var/cache/apk/*
 
@@ -19,6 +19,7 @@ RUN addgroup -S -g 1000 swish && \
 
 # Set workdir
 WORKDIR /services/swish/swish-crawler/
+RUN chown -R swish:swish /services/swish/swish-crawler/
 
 COPY requirements.txt requirements-test.txt ./
 
