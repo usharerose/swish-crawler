@@ -2,7 +2,7 @@ FROM python:3.8-alpine AS prod
 MAINTAINER usharerose
 
 RUN apk update && \
-    apk add --no-cache tzdata bash vim curl && \
+    apk add --no-cache tzdata bash make vim curl && \
     apk upgrade && \
     rm -rf /var/cache/apk/*
 
@@ -19,13 +19,14 @@ RUN addgroup -S -g 1000 swish && \
 
 # Set workdir
 WORKDIR /services/swish/swish-crawler/
+RUN chown -R swish:swish /services/swish/swish-crawler/
 
 COPY requirements.txt requirements-test.txt ./
 
 # install dependencies
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r /services/swish/swish-crawler/requirements.txt && \
-    pip install --no-cache-dir -r /services/swish/swish-crawler/requirements-test.txt && \
+RUN python -m pip install --upgrade pip && \
+    python -m pip install --no-cache-dir -r /services/swish/swish-crawler/requirements.txt && \
+    python -m pip install --no-cache-dir -r /services/swish/swish-crawler/requirements-test.txt && \
     find /usr/local/ -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 
 # Remove requirements files
